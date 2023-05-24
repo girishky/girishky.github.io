@@ -15,10 +15,11 @@ My publications are available at the following links:
 - [Google Scholar](https://scholar.google.com/citations?user=T7OmqrMAAAAJ&hl)
 
 
-
-<div class="credits">
-  <p style=" position: absolute; bottom: 0;">
-This website uses KAGAMI theme, made with <i class="icon-heart"></i> by Kamikat
-  </p> 
+<div style="position: relative;height: 100px;">    
+    <div style="position: absolute; bottom: 2px;">
+      <div class="credits">
+        This website uses KAGAMI theme, made with <i class="icon-heart"></i> by Kamikat
+      </div>
+    </div>
 </div>
 
