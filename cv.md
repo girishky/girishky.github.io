@@ -1,19 +1,19 @@
 ---
 layout: page
-title: CV
-navbar_title: cv
-permalink: /cv/
+title: Contact Information
+navbar_title: Contact
+permalink: /contact/
 lang: en
-# cover_url: https://s2.banana.moe/unsplash_colle/amador-loureiro-779.jpg
-# cover_meta: >
-#   Photo by [Amador Loureiro](https://unsplash.com/@amadorloureiroblanco)
 navbar: true
-position: 100
+position: 200
 ---
 
+__Office Address__ <br />
+719, Department of Physics <br />
+National Taiwan University <br />
+No. 1, Sec 4, Roosevelt Road <br />
+Taipei 10617 <br/>
+Phone: +886 (0)2 3366 5116
 
-
-
-<!-- <div class="credits">
-  Website theme: KAGAMI, made with <i class="icon-heart"></i> by Kamikat
-</div> -->
+__Email__<br />
+[girishk@hep1.phys.ntu.edu.tw](mailto:girishk@hep1.phys.ntu.edu.tw)
