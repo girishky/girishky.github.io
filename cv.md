@@ -16,4 +16,4 @@ Taipei 10617 <br/>
 Phone: +886 (0)2 3366 5116
 
 __Email__<br />
-[girishk@hep1.phys.ntu.edu.tw](mailto:girishk@hep1.phys.ntu.edu.tw)
+girishk[AT]hep1.phys.ntu.edu.tw
