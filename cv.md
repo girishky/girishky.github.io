@@ -9,11 +9,11 @@ position: 200
 ---
 
 __Office Address__ <br />
-719, Department of Physics <br />
-National Taiwan University <br />
-No. 1, Sec 4, Roosevelt Road <br />
-Taipei 10617 <br/>
-Phone: +886 (0)2 3366 5116
+Jones Physical Science Center, Room 702C<br />
+Department of Physics and Astronomy<br />
+University of South Carolina<br />
+712 Main St. <br />
+Columbia, SC 29208 USA <br/>
 
 __Email__<br />
-girishk[AT]hep1.phys.ntu.edu.tw
+girish89[AT]sc.edu
