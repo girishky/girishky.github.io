@@ -25,7 +25,6 @@ BLOG_STREAM_LIMIT = 5
 EXCLUDED_PUBLICATION_KEYWORDS = {"conference", "unpublished"}
 
 NAV_ITEMS = [
-    ("Home", "/"),
     ("Publications", "/publications.html"),
     ("Talks", "/talks.html"),
     ("Notes", "/notes.html"),
@@ -491,6 +490,20 @@ def render_publication_links(entry: dict[str, Any]) -> str:
     return " ".join(links)
 
 
+def render_publication_item(entry: dict[str, Any]) -> str:
+    title = html.escape(str(entry.get("title", "")))
+    authors = render_authors(str(entry.get("author", "")))
+    meta = render_publication_meta(entry)
+    links = render_publication_links(entry)
+    links_html = f'<p class="publication-links">{links}</p>' if links else ""
+    return f"""<li class="publication">
+  <p class="publication-title">{title}</p>
+  <p class="publication-authors">{authors}</p>
+  <p class="publication-meta">{meta}</p>
+  {links_html}
+</li>"""
+
+
 def render_publications() -> str:
     if not PUBLICATIONS_BIB.exists():
         return ""
@@ -503,30 +516,39 @@ def render_publications() -> str:
     entries.sort(key=lambda entry: int(str(entry.get("year", "0"))), reverse=True)
 
     if not entries:
-        return '<section class="publications"><h2>Published Articles</h2><p>No published articles yet.</p></section>'
+        return '<section class="publications" aria-label="Research papers"><p>No journal articles yet.</p></section>'
 
-    items = []
+    groups = []
+    current_year = ""
+    current_items: list[str] = []
+
     for entry in entries:
-        title = html.escape(str(entry.get("title", "")))
-        authors = render_authors(str(entry.get("author", "")))
-        meta = render_publication_meta(entry)
-        links = render_publication_links(entry)
-        links_html = f'<p class="publication-links">{links}</p>' if links else ""
-        items.append(
-            f"""<li class="publication">
-  <p class="publication-title">{title}</p>
-  <p class="publication-authors">{authors}</p>
-  <p class="publication-meta">{meta}</p>
-  {links_html}
-</li>"""
+        year = str(entry.get("year", ""))
+        if current_year and year != current_year:
+            groups.append((current_year, current_items))
+            current_items = []
+        current_year = year
+        current_items.append(render_publication_item(entry))
+
+    if current_year:
+        groups.append((current_year, current_items))
+
+    year_sections = []
+    for year, items in groups:
+        year_id = f"papers-{html.escape(year, quote=True)}"
+        items_html = "\n".join(items)
+        year_sections.append(
+            f"""<section class="publication-year-group" aria-labelledby="{year_id}">
+  <h2 class="publication-year" id="{year_id}">{html.escape(year)}</h2>
+  <ol class="publication-list">
+    {items_html}
+  </ol>
+</section>"""
         )
 
-    return """<section class="publications" aria-labelledby="published-articles">
-  <h2 id="published-articles">Published Articles</h2>
-  <ol class="publication-list">
-    {items}
-  </ol>
-</section>""".format(items="\n".join(items))
+    return """<section class="publications" aria-label="Research papers">
+  {groups}
+</section>""".format(groups="\n".join(year_sections))
 
 
 def render_footnotes(footnotes: dict[str, str], footnote_order: list[str]) -> str:
@@ -567,7 +589,6 @@ def render_footer(site: dict[str, Any]) -> str:
     github_url = html.escape(str(site.get("github_url", "https://github.com/girishky")), quote=True)
     orcid_url = html.escape(str(site.get("orcid_url", "")), quote=True)
     scholar_url = html.escape(str(site.get("scholar_url", "")), quote=True)
-    site_title = html.escape(str(site.get("title", "Girish Kumar")))
     profile_links = [
         '<a href="/contact.html">Contact</a>',
         f'<a href="{github_url}">GitHub</a>',
@@ -580,7 +601,6 @@ def render_footer(site: dict[str, Any]) -> str:
     separator = '<span aria-hidden="true">•</span>'
     links = f"\n  {separator}\n  ".join(profile_links)
     return f"""<footer class="site-footer" aria-label="Footer">
-  <p class="footer-name">{site_title}</p>
   <p class="footer-links">
   {links}
   </p>
@@ -606,6 +626,7 @@ def format_date(date: dt.date) -> str:
 
 def render_base(site: dict[str, Any], title: str, description: str, body: str, url: str, math: bool) -> str:
     return template("base.html").substitute(
+        body_class="site-home" if url == "/" else "site-page",
         title=html.escape(page_title(site["title"], title)),
         description=html.escape(description or site["description"], quote=True),
         site_title=html.escape(site["title"]),
@@ -617,12 +638,22 @@ def render_base(site: dict[str, Any], title: str, description: str, body: str, u
     )
 
 
+def render_page_header(heading: str, intro: str = "") -> str:
+    intro_html = f'\n  <p class="page-dek">{render_inlines(intro)}</p>' if intro else ""
+    return f"""<header class="page-header">
+  <h1>{html.escape(heading)}</h1>{intro_html}
+</header>
+"""
+
+
 def render_page(site: dict[str, Any], source: Path) -> None:
     meta, body = parse_front_matter(read_text(source))
     title = str(meta.get("title", source.stem.replace("-", " ").title()))
     output = str(meta.get("output", f"{source.stem}.html"))
     url = "/" if output == "index.html" else f"/{output}"
     description = str(meta.get("description", site["description"]))
+    heading = str(meta.get("heading", site["title"] if output == "index.html" else title))
+    intro = str(meta.get("intro", ""))
     content = render_markdown(body)
     math = bool(meta.get("math"))
     if output == "publications.html":
@@ -631,7 +662,7 @@ def render_page(site: dict[str, Any], source: Path) -> None:
 
     body_html = template("page.html").substitute(
         page_class=f"prose page page-{slugify(Path(output).stem)}",
-        header="",
+        header=render_page_header(heading, intro),
         content=content,
     )
     write_text(DOCS / output, render_base(site, title, description, body_html, url, math))
@@ -719,13 +750,23 @@ def render_collection_index(
         entries=posts_html,
     )
     url = f"/{output}"
-    render = render_base(site, title, site["description"], body_html, url, False)
+    render = render_base(
+        site,
+        title,
+        site["description"],
+        render_page_header(title) + body_html,
+        url,
+        False,
+    )
     write_text(DOCS / output, render)
 
 
 def render_blog_index(site: dict[str, Any], entries: list[dict[str, Any]]) -> None:
     if not entries:
-        body = '<section class="prose blog-stream"><p>No blog posts yet.</p></section>'
+        body = (
+            render_page_header("Blog")
+            + '<section class="prose blog-stream"><p>No blog posts yet.</p></section>'
+        )
         render = render_base(site, "Blog", site["description"], body, "/blog.html", False)
         write_text(DOCS / "blog.html", render)
         return
@@ -767,7 +808,14 @@ def render_blog_index(site: dict[str, Any], entries: list[dict[str, Any]]) -> No
         posts="\n".join(posts),
         archive=archive,
     )
-    render = render_base(site, "Blog", site["description"], body, "/blog.html", any(entry["math"] for entry in recent))
+    render = render_base(
+        site,
+        "Blog",
+        site["description"],
+        render_page_header("Blog") + body,
+        "/blog.html",
+        any(entry["math"] for entry in recent),
+    )
     write_text(DOCS / "blog.html", render)
 
 

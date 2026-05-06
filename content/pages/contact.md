@@ -1,6 +1,7 @@
 ---
 title: Contact
 description: Contact details and public profile links.
+intro: Email and public profile links.
 output: contact.html
 ---
 
