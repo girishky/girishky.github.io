@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="${description}">
+    <title>${title}</title>
+    <link rel="stylesheet" href="/assets/style.css">
+${katex_head}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <nav class="site-nav" aria-label="Main navigation">
+          ${nav}
+        </nav>
+      </header>
+      <main id="main" class="site-main">
+        ${body}
+      </main>
+      ${footer}
+    </div>
+${katex_scripts}
+  </body>
+</html>

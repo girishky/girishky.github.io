@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+set -eu
+
+UV_CACHE_DIR="${UV_CACHE_DIR:-.uv-cache}" uv run python scripts/build.py
