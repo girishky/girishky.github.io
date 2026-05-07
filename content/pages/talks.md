@@ -1,7 +1,7 @@
 ---
 title: Talks
-description: Selected seminars, conference talks, and presentations.
-intro: Selected seminars and conference presentations.
+description: Selected seminars and conference talks.
+intro: Selected seminars and conference talks.
 output: talks.html
 math: true
 ---
