@@ -9,7 +9,6 @@ from pathlib import Path
 from string import Template
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content"
 PAGES = CONTENT / "pages"
@@ -108,7 +107,9 @@ def extract_footnotes(markdown: str) -> tuple[str, dict[str, str]]:
         label = match.group(1).strip()
         text_parts = [match.group(2).strip()]
         i += 1
-        while i < len(lines) and (lines[i].startswith("    ") or lines[i].startswith("\t")):
+        while i < len(lines) and (
+            lines[i].startswith("    ") or lines[i].startswith("\t")
+        ):
             text_parts.append(lines[i].strip())
             i += 1
         footnotes[label] = " ".join(part for part in text_parts if part)
@@ -229,7 +230,9 @@ def render_markdown(markdown: str) -> str:
                 i += 1
             i += 1
             class_name = f' class="language-{slugify(language)}"' if language else ""
-            output.append(f"<pre><code{class_name}>{html.escape(chr(10).join(code))}</code></pre>")
+            output.append(
+                f"<pre><code{class_name}>{html.escape(chr(10).join(code))}</code></pre>"
+            )
             continue
 
         if line.strip() == "$$":
@@ -259,7 +262,9 @@ def render_markdown(markdown: str) -> str:
             items: list[str] = []
             while i < len(lines) and is_unordered_item(lines[i]):
                 item = re.sub(r"^\s*[-*]\s+", "", lines[i]).strip()
-                items.append(f"<li>{render_inlines(item, footnotes, footnote_order)}</li>")
+                items.append(
+                    f"<li>{render_inlines(item, footnotes, footnote_order)}</li>"
+                )
                 i += 1
             output.append("<ul>\n" + "\n".join(items) + "\n</ul>")
             continue
@@ -268,7 +273,9 @@ def render_markdown(markdown: str) -> str:
             items = []
             while i < len(lines) and is_ordered_item(lines[i]):
                 item = re.sub(r"^\s*\d+\.\s+", "", lines[i]).strip()
-                items.append(f"<li>{render_inlines(item, footnotes, footnote_order)}</li>")
+                items.append(
+                    f"<li>{render_inlines(item, footnotes, footnote_order)}</li>"
+                )
                 i += 1
             output.append("<ol>\n" + "\n".join(items) + "\n</ol>")
             continue
@@ -278,7 +285,9 @@ def render_markdown(markdown: str) -> str:
             while i < len(lines) and lines[i].startswith(">"):
                 quote.append(lines[i].lstrip("> ").strip())
                 i += 1
-            output.append(f"<blockquote><p>{render_inlines(' '.join(quote), footnotes, footnote_order)}</p></blockquote>")
+            output.append(
+                f"<blockquote><p>{render_inlines(' '.join(quote), footnotes, footnote_order)}</p></blockquote>"
+            )
             continue
 
         paragraph: list[str] = []
@@ -296,7 +305,9 @@ def render_markdown(markdown: str) -> str:
                 break
             paragraph.append(current.strip())
             i += 1
-        output.append(f"<p>{render_inlines(' '.join(paragraph), footnotes, footnote_order)}</p>")
+        output.append(
+            f"<p>{render_inlines(' '.join(paragraph), footnotes, footnote_order)}</p>"
+        )
 
     if footnote_order:
         output.append(render_footnotes(footnotes, footnote_order))
@@ -334,7 +345,9 @@ def matching_outer_braces(text: str) -> bool:
 def clean_bib_value(value: str) -> str:
     value = value.strip().rstrip(",").strip()
     while True:
-        if (value.startswith('"') and value.endswith('"')) or matching_outer_braces(value):
+        if (value.startswith('"') and value.endswith('"')) or matching_outer_braces(
+            value
+        ):
             value = value[1:-1].strip()
             continue
         break
@@ -429,7 +442,11 @@ def parse_bibtex(text: str) -> list[dict[str, Any]]:
 
 def publication_keywords(entry: dict[str, Any]) -> set[str]:
     raw_keywords = str(entry.get("keywords", ""))
-    return {keyword.strip().lower() for keyword in raw_keywords.split(",") if keyword.strip()}
+    return {
+        keyword.strip().lower()
+        for keyword in raw_keywords.split(",")
+        if keyword.strip()
+    }
 
 
 def is_published_article(entry: dict[str, Any]) -> bool:
@@ -482,7 +499,9 @@ def render_publication_links(entry: dict[str, Any]) -> str:
     doi = str(entry.get("doi", "")).strip()
     eprint = str(entry.get("eprint", "")).strip()
     if doi:
-        links.append(f'<a href="https://doi.org/{html.escape(doi, quote=True)}">DOI</a>')
+        links.append(
+            f'<a href="https://doi.org/{html.escape(doi, quote=True)}">DOI</a>'
+        )
     if eprint:
         links.append(
             f'<a href="https://arxiv.org/abs/{html.escape(eprint, quote=True)}">arXiv:{html.escape(eprint)}</a>'
@@ -559,7 +578,11 @@ def render_footnotes(footnotes: dict[str, str], footnote_order: list[str]) -> st
         items.append(
             f'<li id="fn-{suffix}">{text} <a class="footnote-backref" href="#fnref-{suffix}" aria-label="Back to reference">&#8617;</a></li>'
         )
-    return '<section class="footnotes" aria-label="Footnotes">\n<ol>\n' + "\n".join(items) + "\n</ol>\n</section>"
+    return (
+        '<section class="footnotes" aria-label="Footnotes">\n<ol>\n'
+        + "\n".join(items)
+        + "\n</ol>\n</section>"
+    )
 
 
 def template(name: str) -> Template:
@@ -575,10 +598,10 @@ def page_title(site_title: str, title: str) -> str:
 def render_nav(current_url: str) -> str:
     links: list[str] = []
     for label, href in NAV_ITEMS:
-        is_current = href == current_url or (
-            href == "/notes.html" and current_url.startswith("/notes/")
-        ) or (
-            href == "/blog.html" and current_url.startswith("/blog/")
+        is_current = (
+            href == current_url
+            or (href == "/notes.html" and current_url.startswith("/notes/"))
+            or (href == "/blog.html" and current_url.startswith("/blog/"))
         )
         current = ' aria-current="page"' if is_current else ""
         links.append(f'<a href="{href}"{current}>{html.escape(label)}</a>')
@@ -586,7 +609,9 @@ def render_nav(current_url: str) -> str:
 
 
 def render_footer(site: dict[str, Any]) -> str:
-    github_url = html.escape(str(site.get("github_url", "https://github.com/girishky")), quote=True)
+    github_url = html.escape(
+        str(site.get("github_url", "https://github.com/girishky")), quote=True
+    )
     orcid_url = html.escape(str(site.get("orcid_url", "")), quote=True)
     scholar_url = html.escape(str(site.get("scholar_url", "")), quote=True)
     profile_links = [
@@ -624,7 +649,9 @@ def format_date(date: dt.date) -> str:
     return f"{date.strftime('%B')} {date.day}, {date.year}"
 
 
-def render_base(site: dict[str, Any], title: str, description: str, body: str, url: str, math: bool) -> str:
+def render_base(
+    site: dict[str, Any], title: str, description: str, body: str, url: str, math: bool
+) -> str:
     return template("base.html").substitute(
         body_class="site-home" if url == "/" else "site-page",
         title=html.escape(page_title(site["title"], title)),
@@ -652,7 +679,9 @@ def render_page(site: dict[str, Any], source: Path) -> None:
     output = str(meta.get("output", f"{source.stem}.html"))
     url = "/" if output == "index.html" else f"/{output}"
     description = str(meta.get("description", site["description"]))
-    heading = str(meta.get("heading", site["title"] if output == "index.html" else title))
+    heading = str(
+        meta.get("heading", site["title"] if output == "index.html" else title)
+    )
     intro = str(meta.get("intro", ""))
     content = render_markdown(body)
     math = bool(meta.get("math"))
@@ -665,7 +694,9 @@ def render_page(site: dict[str, Any], source: Path) -> None:
         header=render_page_header(heading, intro),
         content=content,
     )
-    write_text(DOCS / output, render_base(site, title, description, body_html, url, math))
+    write_text(
+        DOCS / output, render_base(site, title, description, body_html, url, math)
+    )
 
 
 def entry_slug(path: Path, meta: dict[str, Any]) -> str:
@@ -737,8 +768,8 @@ def render_collection_index(
             date = format_date(entry["date"])
             cards.append(
                 f"""<article class="post-row">
-  <h2><a href="{entry['url']}">{html.escape(entry['title'])}</a></h2>
-  <time datetime="{entry['date'].isoformat()}">{date}</time>
+  <h2><a href="{entry["url"]}">{html.escape(entry["title"])}</a></h2>
+  <time datetime="{entry["date"].isoformat()}">{date}</time>
 </article>"""
             )
         posts_html = "\n".join(cards)
@@ -767,7 +798,9 @@ def render_blog_index(site: dict[str, Any], entries: list[dict[str, Any]]) -> No
             render_page_header("Blog")
             + '<section class="prose blog-stream"><p>No blog posts yet.</p></section>'
         )
-        render = render_base(site, "Blog", site["description"], body, "/blog.html", False)
+        render = render_base(
+            site, "Blog", site["description"], body, "/blog.html", False
+        )
         write_text(DOCS / "blog.html", render)
         return
 
@@ -778,11 +811,11 @@ def render_blog_index(site: dict[str, Any], entries: list[dict[str, Any]]) -> No
         posts.append(
             f"""<article class="blog-entry">
   <header class="blog-entry-header">
-    <h2><a href="{entry['url']}">{html.escape(entry['title'])}</a></h2>
-    <time datetime="{entry['date'].isoformat()}">{format_date(entry['date'])}</time>
+    <h2><a href="{entry["url"]}">{html.escape(entry["title"])}</a></h2>
+    <time datetime="{entry["date"].isoformat()}">{format_date(entry["date"])}</time>
   </header>
   <div class="blog-entry-body">
-    {render_markdown(entry['body'])}
+    {render_markdown(entry["body"])}
   </div>
 </article>"""
         )
@@ -793,8 +826,8 @@ def render_blog_index(site: dict[str, Any], entries: list[dict[str, Any]]) -> No
         for entry in older:
             archive_items.append(
                 f"""<li>
-  <a href="{entry['url']}">{html.escape(entry['title'])}</a>
-  <time datetime="{entry['date'].isoformat()}">{format_date(entry['date'])}</time>
+  <a href="{entry["url"]}">{html.escape(entry["title"])}</a>
+  <time datetime="{entry["date"].isoformat()}">{format_date(entry["date"])}</time>
 </li>"""
             )
         archive = """<section class="blog-archive" aria-label="Older blog posts">
@@ -827,7 +860,10 @@ def render_404(site: dict[str, Any]) -> None:
   <p>The page you requested does not exist.</p>
   <p><a href="/">Return home</a></p>
 </article>"""
-    write_text(DOCS / "404.html", render_base(site, "Page not found", site["description"], body, "", False))
+    write_text(
+        DOCS / "404.html",
+        render_base(site, "Page not found", site["description"], body, "", False),
+    )
 
 
 def copy_assets() -> None:
@@ -850,19 +886,20 @@ def copy_assets() -> None:
             shutil.rmtree(katex_out)
         shutil.copytree(katex_source, katex_out)
 
-    montserrat_source = VENDOR / "montserrat"
+    montserrat_source = VENDOR / "fonts/montserrat"
     if montserrat_source.exists():
-        montserrat_out = assets_out / "montserrat"
+        montserrat_out = assets_out / "fonts/montserrat"
         if montserrat_out.exists():
             shutil.rmtree(montserrat_out)
         shutil.copytree(montserrat_source, montserrat_out)
 
-    inter_source = VENDOR / "inter"
+    inter_source = VENDOR / "fonts/inter"
     if inter_source.exists():
-        inter_out = assets_out / "inter"
+        inter_out = assets_out / "fonts/inter"
         if inter_out.exists():
             shutil.rmtree(inter_out)
         shutil.copytree(inter_source, inter_out)
+
 
 def build() -> None:
     site = json.loads(read_text(CONTENT / "site.json"))

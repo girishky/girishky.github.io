@@ -2,16 +2,24 @@
   font-display: swap;
   font-family: "Montserrat";
   font-style: normal;
-  font-weight: 400 700;
-  src: url("/assets/montserrat/Montserrat[wght].ttf") format("truetype");
+  font-weight: 100 900;
+  src: url("/assets/fonts/montserrat/Montserrat[wght].ttf") format("truetype");
 }
 
 @font-face {
   font-display: swap;
   font-family: "Inter";
   font-style: normal;
-  font-weight: 400 700;
-  src: url("/assets/inter/Inter[opsz,wght].ttf") format("truetype");
+  font-weight: 100 900;
+  src: url("/assets/fonts/inter/InterVariable.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 100 900;
+  src: url("/assets/fonts/inter/InterVariable-Italic.woff2") format("woff2-variations");
 }
 
 :root {
