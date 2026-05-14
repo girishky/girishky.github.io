@@ -40,38 +40,38 @@
 
 :root {
   color-scheme: light dark;
-   --bg: #f7f7f7;
-   --text: #222222;
-   --muted: #666666;
-   --quiet: #888888;
-   --link: #222222;
-   --link-hover: #222222;
-   --accent: #222222;
-   --border: #d0d0d0;
-   --border-soft: #e5e5e5;
-   --code-bg: #f0f0f0;
-   --focus: #222222;
-   --selection: #d0d0d0;
-   --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --font-serif: "IBM Plex Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    --bg: #f7f7f7;
+    --text: #222222;
+    --muted: #666666;
+    --quiet: #888888;
+    --link: #222222;
+    --link-hover: #222222;
+    --accent: #222222;
+    --border: #d0d0d0;
+    --border-soft: #e5e5e5;
+    --code-bg: #f0f0f0;
+    --focus: #222222;
+    --selection: #d0d0d0;
+    --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+     --font-serif: "IBM Plex Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+     --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-      --bg: #111111;
-      --text: #e0e0e0;
-      --muted: #888888;
-      --quiet: #777777;
-      --link: #e0e0e0;
-      --link-hover: #e0e0e0;
-      --accent: #e0e0e0;
-      --border: #333333;
-      --border-soft: #222222;
-      --code-bg: #1a1a1a;
-      --focus: #e0e0e0;
-      --selection: #333333;
-  }
+   :root {
+       --bg: #111111;
+       --text: #e0e0e0;
+       --muted: #888888;
+       --quiet: #777777;
+       --link: #e0e0e0;
+       --link-hover: #e0e0e0;
+       --accent: #e0e0e0;
+       --border: #333333;
+       --border-soft: #222222;
+       --code-bg: #1a1a1a;
+       --focus: #e0e0e0;
+       --selection: #333333;
+   }
 }
 
 * {
@@ -157,7 +157,7 @@ button:focus-visible {
 .site-brand {
   color: var(--text);
   flex: 0 0 auto;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 650;
   line-height: 1.25;
   text-decoration: none;
@@ -191,7 +191,7 @@ button:focus-visible {
 .site-nav a {
   border-bottom: 1px solid transparent;
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 560;
   letter-spacing: 0;
   line-height: 1.25;
@@ -228,7 +228,7 @@ button:focus-visible {
 .page-header h1 {
   color: var(--text);
   font-family: var(--font-sans);
-  font-size: 1.82rem;
+  font-size: 1.8rem;
   font-weight: 650;
   letter-spacing: 0;
   line-height: 1.25;
@@ -237,7 +237,7 @@ button:focus-visible {
 
 .page-dek {
   color: var(--muted);
-  font-size: 0.96rem;
+  font-size: 0.9rem;
   line-height: 1.6;
   margin: 0.6rem 0 0;
   max-width: 37rem;
@@ -248,17 +248,17 @@ button:focus-visible {
 }
 
 .page-index .page-header h1 {
-  font-size: 2.42rem;
+  font-size: 2.4rem;
 }
 
 .page-index .page-dek {
   color: var(--text);
-  font-size: 1.04rem;
+  font-size: 0.9rem;
 }
 
 .page-index h2 {
   color: var(--text);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   margin: 2.6rem 0 0.85rem;
 }
 
@@ -275,7 +275,7 @@ button:focus-visible {
 .page-index li {
   border-bottom: 1px solid var(--border-soft);
   color: var(--muted);
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   line-height: 1.52;
   margin: 0;
   padding: 0.78rem 0 0.88rem;
@@ -288,7 +288,7 @@ button:focus-visible {
 .page-index li a {
   display: block;
   font-family: var(--font-sans);
-  font-size: 0.86rem;
+  font-size: 0.82rem;
   font-weight: 650;
   margin-bottom: 0.12rem;
 }
@@ -298,7 +298,7 @@ button:focus-visible {
 }
 
 .post-header h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .post-date {
@@ -322,20 +322,20 @@ h3 {
 }
 
 h1 {
-  font-size: 1.82rem;
+  font-size: 1.8rem;
   margin: 0;
 }
 
 h2 {
   color: var(--text);
-  font-size: 1.08rem;
+  font-size: 1.35rem;
   font-weight: 650;
   margin: 2.35rem 0 0.8rem;
 }
 
 h3 {
   color: var(--text);
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 650;
   margin: 1.8rem 0 0.65rem;
 }
@@ -364,7 +364,7 @@ strong {
 code,
 pre {
   font-family: var(--font-mono);
-  font-size: 0.91em;
+  font-size: 0.9rem;
 }
 
 code {
@@ -432,7 +432,7 @@ blockquote {
 }
 
 .post-row h2 {
-  font-size: 1rem;
+  font-size: 1.35rem;
   font-weight: 600;
   line-height: 1.38;
   margin: 0;
@@ -449,7 +449,7 @@ blockquote {
 
 .post-row time {
   color: var(--quiet);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   line-height: 1.4;
   white-space: nowrap;
 }
@@ -472,7 +472,7 @@ blockquote {
 }
 
 .blog-entry-header h2 {
-  font-size: 1.18rem;
+  font-size: 1.35rem;
   font-weight: 650;
   margin: 0;
 }
@@ -489,7 +489,7 @@ blockquote {
 .blog-entry-header time {
   color: var(--quiet);
   display: block;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   margin-top: 0.28rem;
 }
 
@@ -515,7 +515,7 @@ blockquote {
 
 .blog-archive h2 {
   color: var(--text);
-  font-size: 0.95rem;
+  font-size: 0.82rem;
   margin-bottom: 0.7rem;
 }
 
@@ -547,7 +547,7 @@ blockquote {
 
 .blog-archive time {
   color: var(--quiet);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   white-space: nowrap;
 }
 
@@ -568,7 +568,7 @@ blockquote {
 .publication-year {
   color: var(--accent);
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 650;
   line-height: 1.4;
   margin: 0.08rem 0 0;
@@ -598,7 +598,7 @@ blockquote {
 .publication-title {
   color: var(--text);
   font-family: var(--font-sans);
-  font-size: 0.98rem;
+  font-size: 0.9rem;
   font-weight: 650;
   line-height: 1.36;
 }
@@ -633,7 +633,7 @@ blockquote {
 .publication-links a {
   color: var(--link);
   font-family: var(--font-sans);
-  font-size: 0.74rem;
+  font-size: 0.76rem;
   font-weight: 600;
 }
 
@@ -650,7 +650,7 @@ blockquote {
 
 .page-talks li {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   line-height: 1.56;
   margin-top: 0;
   padding: 0;
@@ -673,7 +673,7 @@ blockquote {
   border-top: 1px solid var(--border-soft);
   color: var(--muted);
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   letter-spacing: 0;
   line-height: 1.5;
   margin-top: clamp(4.5rem, 12vh, 7rem);
@@ -708,7 +708,7 @@ blockquote {
 .footnotes {
   border-top: 1px solid var(--border);
   color: var(--muted);
-  font-size: 0.86rem;
+  font-size: 0.82rem;
   margin-top: 2.5rem;
   padding-top: 1rem;
 }
@@ -747,12 +747,12 @@ td {
     scroll-behavior: auto;
   }
 
-  *,
-  *::before,
-  *::after {
+   *,
+   *::before,
+   *::after {
     transition-duration: 0.01ms !important;
     transition-delay: 0ms !important;
-  }
+   }
 }
 
 @media (max-width: 620px) {
@@ -760,75 +760,75 @@ td {
     font-size: 16px;
   }
 
-  .site-shell {
+   .site-shell {
     padding-top: 1.2rem;
-  }
+   }
 
-  .site-header {
+   .site-header {
     align-items: flex-start;
     flex-direction: column;
     gap: 0.85rem;
     margin-bottom: 2.2rem;
-  }
+   }
 
-  .site-nav {
+   .site-nav {
     gap: 0.55rem 0.8rem;
     justify-content: flex-start;
-  }
+   }
 
-  .site-nav a {
-    font-size: 0.82rem;
-  }
+   .site-nav a {
+    font-size: 0.76rem;
+   }
 
-  .page-header {
+   .page-header {
     margin-bottom: 1.7rem;
-  }
+   }
 
-  .page-header h1,
+   .page-header h1,
   h1 {
-    font-size: 1.65rem;
-  }
+    font-size: 1.5rem;
+   }
 
-  .page-index .page-header h1 {
+   .page-index .page-header h1 {
     font-size: 2rem;
-  }
+   }
 
-  .post-header h1 {
-    font-size: 1.65rem;
-  }
+   .post-header h1 {
+    font-size: 1.5rem;
+   }
 
-  .page-dek,
-  .page-index .page-dek {
-    font-size: 1rem;
+   .page-dek,
+   .page-index .page-dek {
+    font-size: 0.9rem;
     line-height: 1.55;
-  }
+   }
 
-  .page-index ul {
+   .page-index ul {
     grid-template-columns: 1fr;
-  }
+   }
 
-  .prose {
+   .prose {
     line-height: 1.65;
-  }
+   }
 
-  .publication-year-group {
+   .publication-year-group {
     display: block;
-  }
+   }
 
-  .publication-year {
+   .publication-year {
     margin: 0 0 0.7rem;
-  }
+   }
 
-  .publication-list {
+   .publication-list {
     padding-left: 0;
-  }
+   }
 
-  .post-row {
+   .post-row {
     gap: 0.22rem;
     grid-template-columns: 1fr;
-  }
+   }
 
-  .blog-archive li {
+   .blog-archive li {
     display: block;
-  }
+   }
 }
