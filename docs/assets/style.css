@@ -415,7 +415,6 @@ blockquote {
 
 .post-list {
   display: block;
-  font-family: var(--font-sans);
 }
 
 .post-list > p,
@@ -473,7 +472,6 @@ blockquote {
 }
 
 .blog-entry-header {
-  font-family: var(--font-sans);
   margin-bottom: 0.9rem;
 }
 
@@ -515,7 +513,6 @@ blockquote {
 
 .blog-archive {
   color: var(--muted);
-  font-family: var(--font-sans);
   margin-top: 3rem;
 }
 
@@ -664,7 +661,6 @@ blockquote {
 .page-talks li > strong:first-child {
   color: var(--text);
   display: block;
-  font-family: var(--font-sans);
   font-weight: 500;
   line-height: 1.36;
   margin-bottom: 0.24rem;
