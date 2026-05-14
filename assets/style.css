@@ -307,6 +307,32 @@ button:focus-visible {
   margin: 0.55rem 0 0;
 }
 
+.prose.post {
+  line-height: 1.65;
+}
+
+.prose.post p,
+.prose.post ul,
+.prose.post ol {
+  margin: 0.7rem 0;
+}
+
+.prose.post p:first-child {
+  margin-top: 0;
+}
+
+.prose.post p:last-child {
+  margin-bottom: 0;
+}
+
+.prose.post strong {
+  font-weight: 600;
+}
+
+.prose.post blockquote {
+  margin-bottom: 1.3rem;
+}
+
 .page-header + p,
 .page-header + section {
   margin-top: 0;
@@ -501,6 +527,7 @@ blockquote {
   font-family: var(--font-serif);
   color: var(--text);
   font-size: 1rem;
+  line-height: 1.65;
 }
 
 .blog-entry-body > :first-child {
@@ -509,6 +536,16 @@ blockquote {
 
 .blog-entry-body > :last-child {
   margin-bottom: 0;
+}
+
+.blog-entry-body p,
+.blog-entry-body ul,
+.blog-entry-body ol {
+  margin: 0.7rem 0;
+}
+
+.blog-entry-body strong {
+  font-weight: 600;
 }
 
 .blog-archive {
