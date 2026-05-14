@@ -1,25 +1,41 @@
 @font-face {
   font-display: swap;
-  font-family: "Montserrat";
+  font-family: "IBM Plex Sans";
   font-style: normal;
   font-weight: 100 900;
-  src: url("/assets/fonts/montserrat/Montserrat[wght].ttf") format("truetype");
+  src: url("/assets/fonts/plex-sans/IBM Plex Sans Var-Roman.woff2") format("woff2");
 }
 
 @font-face {
   font-display: swap;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 100 900;
-  src: url("/assets/fonts/inter/InterVariable.woff2") format("woff2-variations");
-}
-
-@font-face {
-  font-display: swap;
-  font-family: "Inter";
+  font-family: "IBM Plex Sans";
   font-style: italic;
   font-weight: 100 900;
-  src: url("/assets/fonts/inter/InterVariable-Italic.woff2") format("woff2-variations");
+  src: url("/assets/fonts/plex-sans/IBM Plex Sans Var-Italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "IBM Plex Serif";
+  font-style: normal;
+  font-weight: 100 900;
+  src: url("/assets/fonts/plex-serif/IBM Plex Serif Var-Roman.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "IBM Plex Serif";
+  font-style: italic;
+  font-weight: 100 900;
+  src: url("/assets/fonts/plex-serif/IBM Plex Serif Var-Italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/assets/fonts/plex-mono/IBMPlexMono-Regular.woff2") format("woff2");
 }
 
 :root {
@@ -36,9 +52,9 @@
   --code-bg: #eee7da;
   --focus: #446ccf;
   --selection: #ebd1c1;
-  --font-ui: "Montserrat", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-prose: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+   --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-serif: "IBM Plex Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -70,9 +86,9 @@ html {
 }
 
 body {
+  font-family: var(--font-sans);
   margin: 0;
   min-height: 100vh;
-  font-family: var(--font-prose);
   line-height: 1.65;
   text-rendering: optimizeLegibility;
 }
@@ -106,7 +122,7 @@ button:focus-visible {
   background: var(--bg);
   border: 1px solid var(--border);
   color: var(--text);
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
   left: 1rem;
   padding: 0.55rem 0.8rem;
   position: absolute;
@@ -136,7 +152,7 @@ button:focus-visible {
 
 .site-brand,
 .site-nav {
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
 }
 
 .site-brand {
@@ -195,6 +211,7 @@ button:focus-visible {
 }
 
 .prose {
+  font-family: var(--font-serif);
   font-size: 1rem;
   line-height: 1.76;
   padding: 0;
@@ -211,7 +228,7 @@ button:focus-visible {
 
 .page-header h1 {
   color: var(--text);
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
   font-size: 1.82rem;
   font-weight: 650;
   letter-spacing: 0;
@@ -271,7 +288,7 @@ button:focus-visible {
 
 .page-index li a {
   display: block;
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
   font-size: 0.86rem;
   font-weight: 650;
   margin-bottom: 0.12rem;
@@ -287,7 +304,7 @@ button:focus-visible {
 
 .post-date {
   color: var(--quiet);
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
   font-size: 0.82rem;
   margin: 0.55rem 0 0;
 }
@@ -300,7 +317,7 @@ button:focus-visible {
 h1,
 h2,
 h3 {
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
   letter-spacing: 0;
   line-height: 1.25;
 }
@@ -393,7 +410,7 @@ blockquote {
 
 .post-list {
   display: block;
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
 }
 
 .post-list > p,
@@ -451,7 +468,7 @@ blockquote {
 }
 
 .blog-entry-header {
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
   margin-bottom: 0.9rem;
 }
 
@@ -478,6 +495,7 @@ blockquote {
 }
 
 .blog-entry-body {
+  font-family: var(--font-serif);
   color: var(--text);
   font-size: 1rem;
 }
@@ -492,7 +510,7 @@ blockquote {
 
 .blog-archive {
   color: var(--muted);
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
   margin-top: 3rem;
 }
 
@@ -550,7 +568,7 @@ blockquote {
 
 .publication-year {
   color: var(--accent);
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
   font-size: 0.78rem;
   font-weight: 650;
   line-height: 1.35;
@@ -580,7 +598,7 @@ blockquote {
 
 .publication-title {
   color: var(--text);
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
   font-size: 0.98rem;
   font-weight: 650;
   line-height: 1.36;
@@ -615,7 +633,7 @@ blockquote {
 
 .publication-links a {
   color: var(--link);
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
   font-size: 0.74rem;
   font-weight: 600;
 }
@@ -646,7 +664,7 @@ blockquote {
 .page-talks li > strong:first-child {
   color: var(--text);
   display: block;
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
   font-weight: 650;
   line-height: 1.36;
   margin-bottom: 0.24rem;
@@ -655,7 +673,7 @@ blockquote {
 .site-footer {
   border-top: 1px solid var(--border-soft);
   color: var(--muted);
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
   font-size: 0.78rem;
   letter-spacing: 0;
   line-height: 1.55;

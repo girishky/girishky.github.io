@@ -886,19 +886,21 @@ def copy_assets() -> None:
             shutil.rmtree(katex_out)
         shutil.copytree(katex_source, katex_out)
 
-    montserrat_source = VENDOR / "fonts/montserrat"
-    if montserrat_source.exists():
-        montserrat_out = assets_out / "fonts/montserrat"
-        if montserrat_out.exists():
-            shutil.rmtree(montserrat_out)
-        shutil.copytree(montserrat_source, montserrat_out)
-
-    inter_source = VENDOR / "fonts/inter"
-    if inter_source.exists():
-        inter_out = assets_out / "fonts/inter"
-        if inter_out.exists():
-            shutil.rmtree(inter_out)
-        shutil.copytree(inter_source, inter_out)
+    fonts_source = VENDOR / "fonts"
+    fonts_out = assets_out / "fonts"
+    if fonts_source.exists():
+        for font_dir in fonts_source.iterdir():
+            if font_dir.name == "katex" or font_dir.name.startswith("."):
+                continue
+            if font_dir.is_dir():
+                target = fonts_out / font_dir.name
+                if target.exists():
+                    shutil.rmtree(target)
+                shutil.copytree(font_dir, target)
+        license_file = fonts_source / "OFL.txt"
+        if license_file.exists():
+            fonts_out.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(license_file, fonts_out / "OFL.txt")
 
 
 def build() -> None:
