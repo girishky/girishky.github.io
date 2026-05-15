@@ -667,12 +667,10 @@ def render_base(
 
 
 def render_page_header(heading: str, intro: str = "") -> str:
-    intro_html = f'\n  <p class="page-dek">{render_inlines(intro)}</p>' if intro else ""
-    return f"""<header class="page-header">
-  <h1>{html.escape(heading)}</h1>{intro_html}
+    intro_html = f'\n   <p class="page-dek">{render_inlines(intro)}</p>' if intro else ""
+    return f"""<header class="page-header">{intro_html}
 </header>
 """
-
 
 def render_page(site: dict[str, Any], source: Path) -> None:
     meta, body = parse_front_matter(read_text(source))
@@ -762,6 +760,7 @@ def render_collection_index(
     title: str,
     output: str,
     entries: list[dict[str, Any]],
+    intro: str = "",
 ) -> None:
     if entries:
         cards = []
@@ -786,7 +785,7 @@ def render_collection_index(
         site,
         title,
         site["description"],
-        render_page_header(title) + body_html,
+        render_page_header(title, intro) + body_html,
         url,
         False,
     )
