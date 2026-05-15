@@ -81,7 +81,7 @@
 html {
   background: var(--bg);
   color: var(--text);
-  font-size: 17px;
+  font-size: 16px;
   scroll-behavior: smooth;
 }
 
@@ -157,7 +157,6 @@ button:focus-visible {
 .site-brand {
   color: var(--text);
   flex: 0 0 auto;
-  font-size: 0.9rem;
   font-weight: 700;
   line-height: 1.25;
   text-decoration: none;
@@ -211,7 +210,6 @@ button:focus-visible {
 
 .prose {
   font-family: var(--font-serif);
-  font-size: 1rem;
   line-height: 1.7;
   padding: 0;
 }
@@ -228,7 +226,7 @@ button:focus-visible {
 .page-header h1 {
   color: var(--text);
   font-family: var(--font-sans);
-  font-size: 1.8rem;
+  font-size: 1.75rem;
   letter-spacing: 0;
   line-height: 1.25;
   margin: 0;
@@ -236,7 +234,6 @@ button:focus-visible {
 
 .page-dek {
   color: var(--muted);
-  font-size: 0.9rem;
   line-height: 1.6;
   margin: 0.6rem 0 0;
   max-width: 37rem;
@@ -247,17 +244,12 @@ button:focus-visible {
 }
 
 .page-index .page-header h1 {
-  font-size: 2.4rem;
-}
-
-.page-index .page-dek {
-  color: var(--text);
-  font-size: 0.9rem;
+  font-size: 2.75rem;
 }
 
 .page-index h2 {
   color: var(--text);
-  font-size: 0.82rem;
+  font-size: 1.25rem;
   margin: 2.6rem 0 0.85rem;
 }
 
@@ -274,7 +266,7 @@ button:focus-visible {
 .page-index li {
   border-bottom: 1px solid var(--border-soft);
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   line-height: 1.52;
   margin: 0;
   padding: 0.78rem 0 0.88rem;
@@ -287,7 +279,6 @@ button:focus-visible {
 .page-index li a {
   display: block;
   font-family: var(--font-sans);
-  font-size: 0.82rem;
   font-weight: 500;
   margin-bottom: 0.12rem;
 }
@@ -297,13 +288,13 @@ button:focus-visible {
 }
 
 .post-header h1 {
-  font-size: 1.8rem;
+  font-size: 1.75rem;
 }
 
 .post-date {
   color: var(--quiet);
   font-family: var(--font-sans);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   margin: 0.55rem 0 0;
 }
 
@@ -347,21 +338,21 @@ h3 {
 }
 
 h1 {
-  font-size: 1.8rem;
+  font-size: 2.25rem;
   font-weight: 700;
   margin: 0;
 }
 
 h2 {
   color: var(--text);
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   font-weight: 650;
   margin: 2.35rem 0 0.8rem;
 }
 
 h3 {
   color: var(--text);
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 560;
   margin: 1.8rem 0 0.65rem;
 }
@@ -463,7 +454,7 @@ blockquote {
 }
 
 .post-row h2 {
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 650;
   line-height: 1.38;
   margin: 0;
@@ -502,7 +493,7 @@ blockquote {
 }
 
 .blog-entry-header h2 {
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 650;
   margin: 0;
 }
@@ -555,7 +546,7 @@ blockquote {
 
 .blog-archive h2 {
   color: var(--text);
-  font-size: 0.82rem;
+  font-size: 1.25rem;
   margin-bottom: 0.7rem;
 }
 
@@ -638,7 +629,7 @@ blockquote {
 .publication-title {
   color: var(--text);
   font-family: var(--font-serif);
-  font-size: 0.9rem;
+  font-size: 1.125rem;
   font-weight: 500;
   line-height: 1.36;
 }
@@ -647,7 +638,7 @@ blockquote {
 .publication-meta,
 .publication-links {
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   margin-top: 0.2rem;
 }
@@ -685,8 +676,8 @@ blockquote {
 
 .page-talks li {
   color: var(--muted);
-  font-size: 0.82rem;
-  line-height: 1.56;
+  font-size: 1rem;
+  line-height: 1.6;
   margin-top: 0;
   padding: 0;
 }
@@ -742,7 +733,7 @@ blockquote {
 .footnotes {
   border-top: 1px solid var(--border);
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   margin-top: 2.5rem;
   padding-top: 1rem;
 }
