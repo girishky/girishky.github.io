@@ -50,7 +50,7 @@
     --border: #d0d0d0;
     --border-soft: #e5e5e5;
     --code-bg: #f0f0f0;
-    --focus: #222222;
+    --focus: #0044cc;
     --selection: #d0d0d0;
     --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
      --font-serif: "IBM Plex Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
@@ -69,7 +69,7 @@
        --border: #333333;
        --border-soft: #222222;
        --code-bg: #1a1a1a;
-       --focus: #e0e0e0;
+       --focus: #6ebfff;
        --selection: #333333;
    }
 }
@@ -119,7 +119,7 @@ button:focus-visible {
 
 .skip-link {
   background: var(--bg);
-  border: 1px solid var(--border);
+  border: 1px solid var(--text);
   color: var(--text);
   font-family: var(--font-sans);
   left: 1rem;
