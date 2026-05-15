@@ -24,12 +24,13 @@ BLOG_STREAM_LIMIT = 5
 EXCLUDED_PUBLICATION_KEYWORDS = {"conference", "unpublished"}
 
 NAV_ITEMS = [
+    ("Home", "/"),
     ("Publications", "/publications.html"),
     ("Talks", "/talks.html"),
     ("Notes", "/notes.html"),
     ("Blog", "/blog.html"),
-]
 
+]
 
 def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
@@ -605,7 +606,7 @@ def render_nav(current_url: str) -> str:
         )
         current = ' aria-current="page"' if is_current else ""
         links.append(f'<a href="{href}"{current}>{html.escape(label)}</a>')
-    return "\n".join(links)
+    return chr(10).join(links)
 
 
 def render_footer(site: dict[str, Any]) -> str:
