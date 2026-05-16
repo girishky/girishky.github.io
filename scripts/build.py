@@ -21,6 +21,7 @@ DOCS = ROOT / "docs"
 ASSETS = ROOT / "assets"
 VENDOR = ROOT / "vendor"
 BLOG_STREAM_LIMIT = 5
+BLOG_FEED_LIMIT = 10
 EXCLUDED_PUBLICATION_KEYWORDS = {"conference", "unpublished"}
 
 NAV_ITEMS = [
@@ -869,6 +870,56 @@ def render_404(site: dict[str, Any]) -> None:
     )
 
 
+def render_feed(site: dict[str, Any], entries: list[dict[str, Any]]) -> None:
+    """Render an Atom feed for blog posts."""
+    site_url = "https://girishky.github.io"
+
+    # Filter to entries with a real date (not fallback to mtime = drafts)
+    entries_with_date = [
+        entry for entry in entries if entry.get("date")
+    ]
+
+    # Take latest 10, sort descending
+    latest = sorted(entries_with_date, key=lambda e: e["date"], reverse=True)[:BLOG_FEED_LIMIT]
+
+    if not latest:
+        return
+
+    # Build the feed XML string
+    updated = latest[0]["date"].isoformat() + "T00:00:00Z"
+    entries_xml = []
+    for entry in latest:
+        entry_url = site_url + "/" + entry["url"].strip("/")
+        entry_date = entry["date"].isoformat() + "T00:00:00Z"
+        body_html = render_markdown(entry["body"])
+        content = "<![CDATA[" + body_html + "]]>"
+        entries_xml.append(
+            f"""<entry>
+    <title>{html.escape(entry["title"])}</title>
+    <id>{html.escape(entry_url)}</id>
+    <published>{entry_date}</published>
+    <updated>{entry_date}</updated>
+    <author><name>{html.escape(site["author"])}</name></author>
+    <link href="{html.escape(entry_url)}" rel="alternate"/>
+    <summary>{html.escape(entry["description"])}</summary>
+    <content type="html">{content}</content>
+</entry>"""
+        )
+
+    feed = f"""<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>{html.escape(site["title"] + " - Blog")}</title>
+    <link href="{html.escape(site_url)}"/>
+    <link href="{html.escape(site_url + "/feed.xml")}" rel="self"/>
+    <updated>{updated}</updated>
+    <id>{html.escape(site_url + "/feed.xml")}</id>
+    <author><name>{html.escape(site["author"])}</name></author>
+{chr(10).join(entries_xml)}
+</feed>"""
+
+    write_text(DOCS / "feed.xml", feed)
+
+
 def copy_assets() -> None:
     assets_out = DOCS / "assets"
     assets_out.mkdir(parents=True, exist_ok=True)
@@ -918,6 +969,7 @@ def build() -> None:
 
     notes = load_entries(NOTES, "notes")
     blog = load_entries(BLOG, "blog")
+    render_feed(site, blog)
     for entry in notes + blog:
         render_entry(site, entry)
     render_collection_index(site, "Notes", "notes.html", notes)
