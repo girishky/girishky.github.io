@@ -908,12 +908,11 @@ def render_feed(site: dict[str, Any], entries: list[dict[str, Any]]) -> None:
 
     feed = f"""<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <title>{html.escape("Blog")}</title>
+    <title>{html.escape(site["title"] + " - Blog")}</title>
     <link href="{html.escape(site_url)}"/>
     <link href="{html.escape(site_url + "/feed.xml")}" rel="self"/>
     <updated>{updated}</updated>
     <id>{html.escape(site_url + "/feed.xml")}</id>
-    <author><name>{html.escape(site["author"])}</name></author>
 {chr(10).join(entries_xml)}
 </feed>"""
 
