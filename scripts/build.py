@@ -131,10 +131,13 @@ def render_inline_segment(
 
     def image_repl(match: re.Match[str]) -> str:
         alt = html.escape(match.group(1), quote=True)
-        url = html.escape(match.group(2), quote=True)
+        url = match.group(2)
+        # Make image URLs absolute so they resolve correctly from any page
+        relative_url = url.lstrip("./")
+        absolute_url = f"/{relative_url}"
         title = match.group(3)
         title_attr = f' title="{html.escape(title, quote=True)}"' if title else ""
-        return placeholder(f'<img src="{url}" alt="{alt}"{title_attr}>')
+        return placeholder(f'<img src="{html.escape(absolute_url, quote=True)}" alt="{alt}"{title_attr}>')
 
     def link_repl(match: re.Match[str]) -> str:
         label = render_plain_inline(match.group(1))
