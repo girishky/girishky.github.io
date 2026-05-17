@@ -423,7 +423,7 @@ blockquote {
 
 .post-row time {
   color: var(--quiet);
-  font-size: 0.76rem;
+  font-size: 0.8125rem;
   line-height: 1.4;
   white-space: nowrap;
 }
@@ -462,7 +462,7 @@ blockquote {
 .blog-entry-header time {
   color: var(--quiet);
   display: block;
-  font-size: 0.76rem;
+  font-size: 0.8125rem;
   margin-top: 0.28rem;
 }
 
@@ -530,7 +530,7 @@ blockquote {
 
 .blog-archive time {
   color: var(--quiet);
-  font-size: 0.76rem;
+  font-size: 0.8125rem;
   white-space: nowrap;
 }
 
@@ -551,7 +551,7 @@ blockquote {
 .publication-year {
   color: var(--accent);
   font-family: var(--font);
-  font-size: 0.76rem;
+  font-size: 0.8125rem;
   font-weight: 560;
   line-height: 1.4;
   margin: 0.08rem 0 0;
@@ -582,15 +582,16 @@ blockquote {
   color: var(--text);
   font-family: var(--font);
   font-size: 1.125rem;
-  font-weight: 500;
-  line-height: 1.36;
+  font-weight: 560;
+  line-height: 1.35;
+  text-wrap: balance;
 }
 
 .publication-authors,
 .publication-meta,
 .publication-links {
   color: var(--muted);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   line-height: 1.5;
   margin-top: 0.2rem;
 }
@@ -611,7 +612,7 @@ blockquote {
 .publication-links a {
   color: var(--muted);
   font-family: var(--font);
-  font-size: 0.76rem;
+  font-size: 0.8125rem;
   font-weight: 400;
 }
 
@@ -622,14 +623,14 @@ blockquote {
 .page-talks ul {
   list-style: none;
   margin-top: 2rem;
-  max-width: 43rem;
+  max-width: 37rem;
   padding: 0;
 }
 
 .page-talks li {
   color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 0.9375rem;
+  line-height: 1.5;
   margin-top: 0;
   padding: 0;
 }
@@ -641,9 +642,15 @@ blockquote {
 .page-talks li > strong:first-child {
   color: var(--text);
   display: block;
-  font-weight: 500;
-  line-height: 1.36;
+  font-size: 1.125rem;
+  font-weight: 560;
+  line-height: 1.35;
   margin-bottom: 0.24rem;
+  text-wrap: balance;
+}
+
+.page-talks li > strong:first-child a::before {
+  content: "\00a0";
 }
 
 .site-footer {
