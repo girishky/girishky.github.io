@@ -637,6 +637,24 @@ def render_footer(site: dict[str, Any]) -> str:
 </footer>"""
 
 
+def canonical_site_url(site: dict[str, Any]) -> str:
+    return str(site.get("site_url", "https://girishky.github.io")).rstrip("/")
+
+
+def canonical_url(site: dict[str, Any], path: str) -> str:
+    if path.startswith(("http://", "https://")):
+        return path
+    if path == "/":
+        return canonical_site_url(site) + "/"
+    return canonical_site_url(site) + "/" + path.lstrip("/")
+
+
+def feed_head(site: dict[str, Any]) -> str:
+    title = html.escape(f'{site["title"]} - Blog', quote=True)
+    href = html.escape(canonical_url(site, "/feed.xml"), quote=True)
+    return f'<link rel="alternate" type="application/atom+xml" title="{title}" href="{href}">'
+
+
 def katex_head(enabled: bool) -> str:
     if not enabled:
         return ""
@@ -665,14 +683,20 @@ def render_base(
         nav=render_nav(url),
         body=body,
         footer=render_footer(site),
+        feed_head=feed_head(site),
         katex_head=katex_head(math),
         katex_scripts=katex_scripts(math),
     )
 
 
 def render_page_header(heading: str, intro: str = "") -> str:
+    heading_html = (
+        f'\n   <h1 class="visually-hidden">{render_inlines(heading)}</h1>'
+        if heading
+        else ""
+    )
     intro_html = f'\n   <p class="page-dek">{render_inlines(intro)}</p>' if intro else ""
-    return f"""<header class="page-header">{intro_html}
+    return f"""<header class="page-header">{heading_html}{intro_html}
 </header>
 """
 
@@ -872,8 +896,6 @@ def render_404(site: dict[str, Any]) -> None:
 
 def render_feed(site: dict[str, Any], entries: list[dict[str, Any]]) -> None:
     """Render an Atom feed for blog posts."""
-    site_url = "https://girishky.github.io"
-
     # Filter to entries with a real date (not fallback to mtime = drafts)
     entries_with_date = [
         entry for entry in entries if entry.get("date")
@@ -889,9 +911,10 @@ def render_feed(site: dict[str, Any], entries: list[dict[str, Any]]) -> None:
     updated = latest[0]["date"].isoformat() + "T00:00:00Z"
     entries_xml = []
     for entry in latest:
-        entry_url = site_url + "/" + entry["url"].strip("/")
+        entry_url = canonical_url(site, entry["url"])
         entry_date = entry["date"].isoformat() + "T00:00:00Z"
-        body_html = render_markdown(entry["body"])
+        body_html = absolutize_root_relative_urls(site, render_markdown(entry["body"]))
+        body_html = body_html.replace("]]>", "]]]]><![CDATA[>")
         content = "<![CDATA[" + body_html + "]]>"
         entries_xml.append(
             f"""<entry>
@@ -909,14 +932,22 @@ def render_feed(site: dict[str, Any], entries: list[dict[str, Any]]) -> None:
     feed = f"""<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>{html.escape(site["title"] + " - Blog")}</title>
-    <link href="{html.escape(site_url)}"/>
-    <link href="{html.escape(site_url + "/feed.xml")}" rel="self"/>
+    <link href="{html.escape(canonical_url(site, "/"))}"/>
+    <link href="{html.escape(canonical_url(site, "/feed.xml"))}" rel="self"/>
     <updated>{updated}</updated>
-    <id>{html.escape(site_url + "/feed.xml")}</id>
+    <id>{html.escape(canonical_url(site, "/feed.xml"))}</id>
 {chr(10).join(entries_xml)}
 </feed>"""
 
     write_text(DOCS / "feed.xml", feed)
+
+
+def absolutize_root_relative_urls(site: dict[str, Any], html_text: str) -> str:
+    def replace(match: re.Match[str]) -> str:
+        url = html.escape(canonical_url(site, "/" + match.group(2)), quote=True)
+        return f'{match.group(1)}="{url}"'
+
+    return re.sub(r'\b(src|href)="/(?!/)([^"]*)"', replace, html_text)
 
 
 def copy_assets() -> None:
@@ -962,6 +993,9 @@ def build() -> None:
         shutil.rmtree(DOCS)
     DOCS.mkdir()
     write_text(DOCS / ".nojekyll", "")
+    custom_domain = str(site.get("custom_domain", "")).strip()
+    if custom_domain:
+        write_text(DOCS / "CNAME", custom_domain + "\n")
 
     for page in sorted(PAGES.glob("*.md")):
         render_page(site, page)

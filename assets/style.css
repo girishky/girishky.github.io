@@ -108,6 +108,16 @@ button:focus-visible {
   top: 1rem;
 }
 
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 .site-shell {
   margin: 0 auto;
   max-width: 720px;
@@ -757,30 +767,37 @@ td {
    }
 
 
-   .post-header h1 {
-
    .page-dek,
    .page-index .page-dek {
     line-height: 1.55;
+   }
 
    .page-index ul {
     grid-template-columns: 1fr;
+   }
 
    .prose {
     line-height: 1.65;
+   }
 
    .publication-year-group {
     display: block;
+   }
 
    .publication-year {
     margin: 0 0 0.7rem;
+   }
 
    .publication-list {
     padding-left: 0;
+   }
 
    .post-row {
     gap: 0.22rem;
     grid-template-columns: 1fr;
+   }
 
    .blog-archive li {
     display: block;
+   }
+}

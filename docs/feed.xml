@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>Girish Kumar - Blog</title>
-    <link href="https://girishky.github.io"/>
-    <link href="https://girishky.github.io/feed.xml" rel="self"/>
+    <link href="https://girishky.com/"/>
+    <link href="https://girishky.com/feed.xml" rel="self"/>
     <updated>2026-05-16T00:00:00Z</updated>
-    <id>https://girishky.github.io/feed.xml</id>
+    <id>https://girishky.com/feed.xml</id>
 <entry>
     <title>Pheno 2026</title>
-    <id>https://girishky.github.io/blog/pheno-2026</id>
+    <id>https://girishky.com/blog/pheno-2026/</id>
     <published>2026-05-16T00:00:00Z</published>
     <updated>2026-05-16T00:00:00Z</updated>
     <author><name>Girish Kumar</name></author>
-    <link href="https://girishky.github.io/blog/pheno-2026" rel="alternate"/>
+    <link href="https://girishky.com/blog/pheno-2026/" rel="alternate"/>
     <summary>On attending the 2026 Pheno conference</summary>
-    <content type="html"><![CDATA[<p><img src="/assets/images/2026-riverwalk-Pittsburgh.webp" alt=""></p>
-<p>This week I was at the University of Pittsburgh for the Phenomenology 2026 Symposium (Pheno), where I gave a talk on my recent work on light axion-like particles and lepton flavor violation in muonic atoms. I wrote about this work in my previous blog article <a href="https://girishky.github.io/blog/lfv-muonic-atom-paper/">here</a>, and you can find the paper on <a href="https://arxiv.org/abs/2604.07481">arXiv</a>.</p>
+    <content type="html"><![CDATA[<p><img src="https://girishky.com/assets/images/2026-riverwalk-Pittsburgh.webp" alt=""></p>
+<p>This week I was at the University of Pittsburgh for the Phenomenology 2026 Symposium (Pheno), where I gave a talk on my recent work on light axion-like particles and lepton flavor violation in muonic atoms. I wrote about this work in my previous blog article <a href="https://girishky.com/blog/lfv-muonic-atom-paper/">here</a>, and you can find the paper on <a href="https://arxiv.org/abs/2604.07481">arXiv</a>.</p>
 <p>The conference had great talks throughout. I especially liked those on the topics of quantum information theory and machine learning applications in high-energy physics, areas I have not had a chance to explore yet. Beyond Pheno, Pittsburgh itself made for a pleasant visit. I stayed downtown and got to see many beautiful buildings. One evening, my wife and I visited Point State Park where the three rivers meet. We took a nice stroll along the riverside. The photo above is from that walk. I would certainly like to return for the conference in the future.</p>]]></content>
 </entry>
 <entry>
     <title>Searching for new physics in muonic atoms</title>
-    <id>https://girishky.github.io/blog/lfv-muonic-atom-paper</id>
+    <id>https://girishky.com/blog/lfv-muonic-atom-paper/</id>
     <published>2026-05-07T00:00:00Z</published>
     <updated>2026-05-07T00:00:00Z</updated>
     <author><name>Girish Kumar</name></author>
-    <link href="https://girishky.github.io/blog/lfv-muonic-atom-paper" rel="alternate"/>
+    <link href="https://girishky.com/blog/lfv-muonic-atom-paper/" rel="alternate"/>
     <summary>A brief overview of my paper about ALP-mediated LFV transitions in muonic atoms.</summary>
     <content type="html"><![CDATA[<p>Neutrino oscillations have proven that lepton flavor is not conserved, but we have yet to observe lepton flavor violation (LFV) in the decays of charged leptons. The Standard Model predicts<sup id="fnref-1"><a class="footnote-ref" href="#fn-1">1</a></sup> that processes like the muon decay $\mu \to e \gamma$ are too rare for current or near-future experiments to detect. This, however, creates opportunities to search for new physics. Since the Standard Model expectation is essentially nil, any detected signal would be clear evidence of physics beyond our current understanding.</p>
 <p>Recently, Professor Alexey Petrov and I investigated a rare LFV process in muonic atoms<sup id="fnref-2"><a class="footnote-ref" href="#fn-2">2</a></sup>. In these systems, in the presence of appropriate new physics,  a captured muon can scatter with a bound electron to produce two electrons. The rate of this process scales with the cube of the effective nuclear charge, which means that searches in heavy atoms, like lead, are more promising due to the increased overlap between muon and electron wave functions. Koike and colleagues first <a href="https://inspirehep.net/literature/848026">proposed</a> this process in 2010.</p>
