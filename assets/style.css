@@ -623,7 +623,7 @@ blockquote {
 .page-talks ul {
   list-style: none;
   margin-top: 2rem;
-  max-width: 37rem;
+  max-width: 43rem;
   padding: 0;
 }
 
@@ -642,15 +642,24 @@ blockquote {
 .page-talks li > strong:first-child {
   color: var(--text);
   display: block;
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   font-weight: 560;
   line-height: 1.35;
   margin-bottom: 0.24rem;
-  text-wrap: balance;
 }
 
-.page-talks li > strong:first-child a::before {
-  content: "\00a0";
+.page-talks li > strong:first-child a {
+  color: var(--muted);
+  display: inline-block;
+  font-size: 0.9em;
+  margin-left: 0.2em;
+  text-decoration: none;
+}
+
+.page-talks li > strong:first-child a:hover,
+.page-talks li > strong:first-child a:focus-visible {
+  color: var(--text);
+  text-decoration: none;
 }
 
 .site-footer {
