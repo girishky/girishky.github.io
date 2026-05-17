@@ -539,6 +539,7 @@ blockquote {
 }
 
 .publication-year-group {
+  align-items: baseline;
   display: grid;
   gap: 1.15rem;
   grid-template-columns: 3.8rem minmax(0, 1fr);
@@ -554,7 +555,7 @@ blockquote {
   font-size: 0.8125rem;
   font-weight: 560;
   line-height: 1.4;
-  margin: 0.08rem 0 0;
+  margin: 0;
 }
 
 .publication-list {
@@ -581,7 +582,7 @@ blockquote {
 .publication-title {
   color: var(--text);
   font-family: var(--font);
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   font-weight: 560;
   line-height: 1.35;
 }
