@@ -5,6 +5,7 @@ import html
 import json
 import re
 import shutil
+import subprocess
 from pathlib import Path
 from string import Template
 from typing import Any
@@ -317,6 +318,90 @@ def render_markdown(markdown: str) -> str:
     if footnote_order:
         output.append(render_footnotes(footnotes, footnote_order))
     return "\n".join(output)
+
+
+def render_katex_mathml(expressions: list[dict[str, Any]]) -> list[str]:
+    if not expressions:
+        return []
+
+    script = """
+const katex = require(process.argv[1]);
+const expressions = JSON.parse(process.argv[2]);
+const rendered = expressions.map(({ math, displayMode }) =>
+  katex.renderToString(math, {
+    displayMode,
+    output: "mathml",
+    strict: "ignore",
+    throwOnError: false,
+  })
+);
+process.stdout.write(JSON.stringify(rendered));
+"""
+    result = subprocess.run(
+        [
+            "node",
+            "-e",
+            script,
+            str(VENDOR / "katex" / "katex.min.js"),
+            json.dumps(expressions),
+        ],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return json.loads(result.stdout)
+
+
+def render_feed_math(body_html: str) -> str:
+    protected_html: list[str] = []
+
+    def protect_html(match: re.Match[str]) -> str:
+        protected_html.append(match.group(0))
+        return f"@@FEEDHTML{len(protected_html) - 1}@@"
+
+    working = re.sub(
+        r"<pre\b.*?</pre>|<code\b.*?</code>",
+        protect_html,
+        body_html,
+        flags=re.DOTALL,
+    )
+    expressions: list[dict[str, Any]] = []
+
+    def math_placeholder(math_text: str, display_mode: bool) -> str:
+        expressions.append(
+            {
+                "math": html.unescape(math_text.strip()),
+                "displayMode": display_mode,
+            }
+        )
+        return f"@@FEEDMATH{len(expressions) - 1}@@"
+
+    def display_math(match: re.Match[str]) -> str:
+        return (
+            '<div class="math-display">'
+            + math_placeholder(match.group(1), True)
+            + "</div>"
+        )
+
+    working = re.sub(
+        r'<div class="math-display">\$\$\s*(.*?)\s*\$\$</div>',
+        display_math,
+        working,
+        flags=re.DOTALL,
+    )
+    working = re.sub(
+        r"\$(?!\$)([^$\n]+?)\$",
+        lambda match: math_placeholder(match.group(1), False),
+        working,
+    )
+
+    for index, rendered_math in enumerate(render_katex_mathml(expressions)):
+        working = working.replace(f"@@FEEDMATH{index}@@", rendered_math)
+
+    for index, original_html in enumerate(protected_html):
+        working = working.replace(f"@@FEEDHTML{index}@@", original_html)
+
+    return working
 
 
 def matching_outer_braces(text: str) -> bool:
@@ -914,6 +999,8 @@ def render_feed(site: dict[str, Any], entries: list[dict[str, Any]]) -> None:
         entry_url = canonical_url(site, entry["url"])
         entry_date = entry["date"].isoformat() + "T00:00:00Z"
         body_html = absolutize_root_relative_urls(site, render_markdown(entry["body"]))
+        if entry["math"]:
+            body_html = render_feed_math(body_html)
         body_html = body_html.replace("]]>", "]]]]><![CDATA[>")
         content = "<![CDATA[" + body_html + "]]>"
         entries_xml.append(
