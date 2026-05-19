@@ -144,7 +144,12 @@ def render_inline_segment(
     def link_repl(match: re.Match[str]) -> str:
         label = render_plain_inline(match.group(1))
         url = html.escape(match.group(2), quote=True)
-        return placeholder(f'<a href="{url}">{label}</a>')
+        title = match.group(3)
+        title_attr = ""
+        if title:
+            title_text = html.escape(title, quote=True)
+            title_attr = f' title="{title_text}" aria-label="{title_text}"'
+        return placeholder(f'<a href="{url}"{title_attr}>{label}</a>')
 
     def line_break_repl(match: re.Match[str]) -> str:
         return placeholder("<br>")
@@ -166,7 +171,7 @@ def render_inline_segment(
         )
 
     text = re.sub(r"!\[([^\]]*)\]\(([^)\s]+)(?:\s+\"([^\"]+)\")?\)", image_repl, text)
-    text = re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", link_repl, text)
+    text = re.sub(r"\[([^\]]+)\]\(([^)\s]+)(?:\s+\"([^\"]+)\")?\)", link_repl, text)
     text = re.sub(r"\s+\\\\\s+", line_break_repl, text)
     text = re.sub(r"\[\^([^\]]+)\]", footnote_repl, text)
     escaped = html.escape(text, quote=True)

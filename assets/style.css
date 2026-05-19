@@ -622,7 +622,7 @@ blockquote {
 
 .page-talks ul {
   list-style: none;
-  margin-top: 2rem;
+  margin-top: 1.65rem;
   max-width: 43rem;
   padding: 0;
 }
@@ -630,7 +630,7 @@ blockquote {
 .page-talks li {
   color: var(--muted);
   font-size: 0.9375rem;
-  line-height: 1.5;
+  line-height: 1.48;
   margin-top: 0;
   padding: 0;
 }
@@ -645,14 +645,14 @@ blockquote {
   font-size: 1.0625rem;
   font-weight: 560;
   line-height: 1.35;
-  margin-bottom: 0.24rem;
+  margin-bottom: 0.18rem;
 }
 
 .page-talks li > strong:first-child a {
   color: var(--muted);
   display: inline-block;
   font-size: 0.9em;
-  margin-left: 0.2em;
+  margin-left: 0.22em;
   text-decoration: none;
 }
 
