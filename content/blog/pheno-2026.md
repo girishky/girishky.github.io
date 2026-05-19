@@ -6,7 +6,7 @@ tags: [conference]
 category: blog
 ---
 
-![](assets/images/2026-riverwalk-Pittsburgh.webp)
+![Riverwalk view in Pittsburgh near Point State Park](assets/images/2026-riverwalk-Pittsburgh.webp)
 
 This week I was at the University of Pittsburgh for the Phenomenology 2026 Symposium (Pheno), where I gave a talk on my recent work on light axion-like particles and lepton flavor violation in muonic atoms. I wrote about this work in my previous blog article [here](/blog/lfv-muonic-atom-paper/), and you can find the paper on [arXiv](https://arxiv.org/abs/2604.07481).
 
