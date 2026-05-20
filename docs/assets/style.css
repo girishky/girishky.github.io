@@ -248,7 +248,8 @@ button:focus-visible {
 .post-date {
   color: var(--quiet);
   font-family: var(--font);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
   margin: 0.55rem 0 0;
 }
 
@@ -464,8 +465,8 @@ blockquote {
 .blog-entry-header time {
   color: var(--quiet);
   display: block;
-  font-size: 0.875rem;
-  line-height: 1.65;
+  font-size: 0.8125rem;
+  line-height: 1.45;
   margin-top: 0.55rem;
 }
 
