@@ -240,7 +240,9 @@ button:focus-visible {
 }
 
 .post-header h1 {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
+  font-weight: 650;
+  line-height: 1.3;
 }
 
 .post-date {
@@ -254,9 +256,9 @@ button:focus-visible {
   line-height: 1.65;
 }
 
-.prose.post p,
-.prose.post ul,
-.prose.post ol {
+.prose.post > p,
+.prose.post > ul,
+.prose.post > ol {
   margin: 0.7rem 0;
 }
 
@@ -462,8 +464,9 @@ blockquote {
 .blog-entry-header time {
   color: var(--quiet);
   display: block;
-  font-size: 0.8125rem;
-  margin-top: 0.28rem;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  margin-top: 0.55rem;
 }
 
 .blog-entry-body {
@@ -780,6 +783,10 @@ td {
    .page-header h1,
   h1 {
     font-size: 1.5rem;
+   }
+
+   .post-header h1 {
+    font-size: 1.25rem;
    }
 
 
