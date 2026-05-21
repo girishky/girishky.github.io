@@ -18,4 +18,4 @@ Although this process may not be the primary discovery channel for light particl
 
 [^1]: This assumes neutrinos gain mass via the same mechanism as, say, the electron. In the Standard Model with massless neutrinos, lepton flavor is conserved. 
 
-[^2]: These are [exotic atoms](https://en.wikipedia.org/wiki/Exotic_atom) where a captured muon orbits the nucleus instead of an electron.
+[^2]:  Muonic atoms are [exotic atoms](https://en.wikipedia.org/wiki/Exotic_atom) in which a captured muon replaces one of the electrons and orbits the nucleus.

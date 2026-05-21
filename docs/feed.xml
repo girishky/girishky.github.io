@@ -14,8 +14,8 @@
     <link href="https://girishky.com/blog/pheno-2026/" rel="alternate"/>
     <summary>On attending the 2026 Pheno conference</summary>
     <content type="html"><![CDATA[<p><img src="https://girishky.com/assets/images/2026-riverwalk-Pittsburgh.webp" alt="Riverwalk view in Pittsburgh near Point State Park"></p>
-<p>This week I was at the University of Pittsburgh for the Phenomenology 2026 Symposium (Pheno), where I gave a talk on my recent work on light axion-like particles and lepton flavor violation in muonic atoms. I wrote about this work in my previous blog article <a href="https://girishky.com/blog/lfv-muonic-atom-paper/">here</a>, and you can find the paper on <a href="https://arxiv.org/abs/2604.07481">arXiv</a>.</p>
-<p>The conference had great talks throughout. I especially liked those on the topics of quantum information theory and machine learning applications in high-energy physics, areas I have not had a chance to explore yet. Beyond Pheno, Pittsburgh itself made for a pleasant visit. I stayed downtown and got to see many beautiful buildings. One evening, my wife and I visited Point State Park where the three rivers meet. We took a nice stroll along the riverside. The photo above is from that walk. I would certainly like to return for the conference in the future.</p>]]></content>
+<p>This week I was at the University of Pittsburgh for the Phenomenology 2026 Symposium (Pheno), where I gave a talk on my recent work on light axion-like particles and lepton flavor violation in muonic atoms. I wrote about this work in <a href="https://girishky.com/blog/lfv-muonic-atom-paper/">my previous post on muonic atoms</a>, and you can find the paper on <a href="https://arxiv.org/abs/2604.07481">arXiv</a>.</p>
+<p>The conference was three days long and had great talks throughout. I especially liked those on the topics of quantum information theory and machine learning applications in high-energy physics, areas I have not had a chance to work on yet. Beyond Pheno, Pittsburgh itself made for a pleasant visit. We stayed downtown and got to see many beautiful buildings. One evening, my wife and I visited Point State Park where the three rivers meet. We took a nice stroll along the riverside. The photo above is from that walk. I would certainly like to return for the conference in the future.</p>]]></content>
 </entry>
 <entry>
     <title>Searching for new physics in muonic atoms</title>
@@ -32,7 +32,7 @@
 <section class="footnotes" aria-label="Footnotes">
 <ol>
 <li id="fn-1">This assumes neutrinos gain mass via the same mechanism as, say, the electron. In the Standard Model with massless neutrinos, lepton flavor is conserved. <a class="footnote-backref" href="#fnref-1" aria-label="Back to reference">&#8617;</a></li>
-<li id="fn-2">These are <a href="https://en.wikipedia.org/wiki/Exotic_atom">exotic atoms</a> where a captured muon orbits the nucleus instead of an electron. <a class="footnote-backref" href="#fnref-2" aria-label="Back to reference">&#8617;</a></li>
+<li id="fn-2">Muonic atoms are <a href="https://en.wikipedia.org/wiki/Exotic_atom">exotic atoms</a> in which a captured muon replaces one of the electrons and orbits the nucleus. <a class="footnote-backref" href="#fnref-2" aria-label="Back to reference">&#8617;</a></li>
 </ol>
 </section>]]></content>
 </entry>
