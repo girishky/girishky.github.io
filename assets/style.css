@@ -19,7 +19,7 @@
     --bg: #F8F9FA;
     --text: #212529;
     --muted: #666666;
-    --quiet: #707070;
+    --quiet: #555555;
     --link: #222222;
     --link-hover: #222222;
     --accent: #222222;
@@ -120,7 +120,7 @@ button:focus-visible {
 
 .site-shell {
   margin: 0 auto;
-  max-width: 720px;
+  max-width: 700px;
   padding: clamp(1.5rem, 4vh, 2.8rem) clamp(1rem, 5vw, 3rem) 2rem;
 }
 
@@ -145,11 +145,12 @@ button:focus-visible {
 .site-nav a {
   border-bottom: 1px solid transparent;
   color: var(--muted);
-  font-size: 0.84rem;
+  display: inline-block;
+  font-size: 0.875rem;
   font-weight: 450;
   letter-spacing: 0;
-  line-height: 1.35;
-  padding: 0.08rem 0 0.22rem;
+  line-height: 1.4;
+  padding: 0.2rem 0 0.32rem;
   text-decoration: none;
 }
 
@@ -670,7 +671,7 @@ blockquote {
   border-top: 1px solid var(--border-soft);
   color: var(--muted);
   font-family: var(--font);
-  font-size: 0.76rem;
+  font-size: 0.8125rem;
   letter-spacing: 0;
   line-height: 1.5;
   margin-top: clamp(4.5rem, 12vh, 7rem);
@@ -689,6 +690,8 @@ blockquote {
 
 .site-footer a {
   color: var(--muted);
+  display: inline-block;
+  padding: 0.08rem 0;
   text-decoration: none;
 }
 
@@ -774,7 +777,7 @@ td {
    }
 
    .site-nav a {
-    font-size: 0.82rem;
+    font-size: 0.875rem;
    }
 
    .page-header {
